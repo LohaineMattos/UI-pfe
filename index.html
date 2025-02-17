@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Exercícios - UI Front-End</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .exercise {
+            margin: 20px 0;
+        }
+        .exercise h1 {
+            font-size: 24px;
+        }
+        .exercise input, .exercise button {
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="exercise">
+        <h1>Cálculo de Desconto INSS</h1>
+        <input type="number" id="salario" placeholder="Salário">
+        <button onclick="calcularINSS()">Calcular Desconto</button>
+        <p id="resultadoINSS"></p>
+    </div>
+
+    <div class="exercise">
+        <h1>Classificação de Triângulo</h1>
+        <input type="number" id="ladoA" placeholder="Lado A">
+        <input type="number" id="ladoB" placeholder="Lado B">
+        <input type="number" id="ladoC" placeholder="Lado C">
+        <button onclick="classificarTriangulo()">Classificar</button>
+        <p id="resultadoTriangulo"></p>
+    </div>
+
+    <div class="exercise">
+        <h1>Aumento de Preço de Mercadoria</h1>
+        <input type="text" id="nome" placeholder="Nome da Mercadoria">
+        <input type="number" id="preco" placeholder="Preço">
+        <button onclick="calcularAumento()">Calcular Aumento</button>
+        <p id="resultadoAumento"></p>
+    </div>
+
+    <div class="exercise">
+        <h1>Maior Número Digitado</h1>
+        <input type="number" id="numero1" placeholder="Número 1">
+        <input type="number" id="numero2" placeholder="Número 2">
+        <input type="number" id="numero3" placeholder="Número 3">
+        <input type="number" id="numero4" placeholder="Número 4">
+        <input type="number" id="numero5" placeholder="Número 5">
+        <input type="number" id="numero6" placeholder="Número 6">
+        <button onclick="encontrarMaior()">Encontrar Maior</button>
+        <p id="resultadoMaior"></p>
+    </div>
+
+    <div class="exercise">
+        <h1>Números em Ordem Crescente</h1>
+        <input type="number" id="num1" placeholder="Número 1">
+        <input type="number" id="num2" placeholder="Número 2">
+        <input type="number" id="num3" placeholder="Número 3">
+        <input type="number" id="num4" placeholder="Número 4">
+        <input type="number" id="num5" placeholder="Número 5">
+        <button onclick="ordenarNumeros()">Ordenar</button>
+        <p id="resultadoOrdem"></p>
+    </div>
+
+    <div class="exercise">
+        <h1>Maior e Menor Número</h1>
+        <input type="number" id="num1" placeholder="Número 1">
+        <input type="number" id="num2" placeholder="Número 2">
+        <button onclick="encontrarMaiorMenor()">Verificar</button>
+        <p id="resultadoMaiorMenor"></p>
+    </div>
+
+    <div class="exercise">
+        <h1>Cálculo de Reajuste Salarial</h1>
+        <input type="number" id="salarioAtual" placeholder="Salário Atual">
+        <button onclick="calcularReajuste()">Calcular Reajuste</button>
+        <p id="resultadoReajuste"></p>
+    </div>
+
+    <div class="exercise">
+        <h1>Cálculo da Média de Notas</h1>
+        <input type="number" id="nota1" placeholder="Nota 1">
+        <input type="number" id="nota2" placeholder="Nota 2">
+        <input type="number" id="nota3" placeholder="Nota 3">
+        <button onclick="calcularMedia()">Calcular Média</button>
+        <p id="resultadoMedia"></p>
+    </div>
+
+    <div class="exercise">
+        <h1>Desconto em Vendas</h1>
+        <input type="text" id="produto" placeholder="Produto">
+        <input type="number" id="precoVenda" placeholder="Preço">
+        <button onclick="calcularDesconto()">Calcular Desconto</button>
+        <p id="resultadoDesconto"></p>
+    </div>
+
+    <script>
+        function calcularINSS() {
+            let salario = Number(document.getElementById('salario').value);
+            let desconto = 0;
+
+            if (salario <= 1212) {
+                desconto = salario * 0.075;
+            } else if (salario <= 2427.35) {
+                desconto = salario * 0.09;
+            } else if (salario <= 3641.03) {
+                desconto = salario * 0.12;
+            } else if (salario <= 7087.22) {
+                desconto = salario * 0.14;
+            } else {
+                desconto = 7087.22 * 0.14;
+            }
+
+            let salarioFinal = salario - desconto;
+            document.getElementById('resultadoINSS').innerHTML = `Desconto: R$ ${desconto.toFixed(2)} <br>Salário Final: R$ ${salarioFinal.toFixed(2)}`;
+        }
+
+        function classificarTriangulo() {
+            let a = Number(document.getElementById('ladoA').value);
+            let b = Number(document.getElementById('ladoB').value);
+            let c = Number(document.getElementById('ladoC').value);
+            let resultado = '';
+
+            if (a === b && b === c) {
+                resultado = 'EQUILÁTERO';
+            } else if (a !== b && b !== c && a !== c) {
+                resultado = 'ESCALENO';
+            } else {
+                resultado = 'ISÓSCELES';
+            }
+
+            document.getElementById('resultadoTriangulo').innerHTML = `Tipo de triângulo: ${resultado}`;
+        }
+
+        function calcularAumento() {
+            let nome = document.getElementById('nome').value;
+            let preco = Number(document.getElementById('preco').value);
+            let aumento = 0;
+
+            if (preco < 1000) {
+                aumento = preco * 0.05;
+            } else {
+                aumento = preco * 0.07;
+            }
+
+            let novoPreco = preco + aumento;
+            document.getElementById('resultadoAumento').innerHTML = `Mercadoria: ${nome} <br> Novo Preço: R$ ${novoPreco.toFixed(2)}`;
+        }
+
+        function encontrarMaior() {
+            let numeros = [
+                Number(document.getElementById('numero1').value),
+                Number(document.getElementById('numero2').value),
+                Number(document.getElementById('numero3').value),
+                Number(document.getElementById('numero4').value),
+                Number(document.getElementById('numero5').value),
+                Number(document.getElementById('numero6').value)
+            ];
+            let maior = Math.max(...numeros);
+            document.getElementById('resultadoMaior').innerHTML = `Maior Número: ${maior}`;
+        }
+
+        function ordenarNumeros() {
+            let numeros = [
+                Number(document.getElementById('num1').value),
+                Number(document.getElementById('num2').value),
+                Number(document.getElementById('num3').value),
+                Number(document.getElementById('num4').value),
+                Number(document.getElementById('num5').value)
+            ];
+            numeros.sort((a, b) => a - b);
+            document.getElementById('resultadoOrdem').innerHTML = `Números em Ordem Crescente: ${numeros.join(', ')}`;
+        }
+
+        function encontrarMaiorMenor() {
+            let num1 = Number(document.getElementById('num1').value);
+            let num2 = Number(document.getElementById('num2').value);
+            let maior = Math.max(num1, num2);
+            let menor = Math.min(num1, num2);
+            document.getElementById('resultadoMaiorMenor').innerHTML = `Maior: ${maior} <br> Menor: ${menor}`;
+        }
+
+        function calcularReajuste() {
+            let salario = Number(document.getElementById('salarioAtual').value);
+            let aumento = 0;
+
+            if (salario >= 1500 && salario < 1750) {
+                aumento = salario * 0.15;
+            } else if (salario >= 1750 && salario < 2000) {
+                aumento = salario * 0.12;
+            } else if (salario >= 2000 && salario < 3000) {
+                aumento = salario * 0.09;
+            } else if (salario >= 3000) {
+                aumento = salario * 0.06;
+            }
+
+            let novoSalario = salario + aumento;
+            document.getElementById('resultadoReajuste').innerHTML = `Aumento: R$ ${aumento.toFixed(2)} <br> Novo Salário: R$ ${novoSalario.toFixed(2)}`;
+        }
+
+        function calcularMedia() {
+            let nota1 = Number(document.getElementById('nota1').value);
+            let nota2 = Number(document.getElementById('nota2').value);
+            let nota3 = Number(document.getElementById('nota3').value);
+            let media = (nota1 + nota2 + nota3) / 3;
+            let situacao = '';
+
+            if (media >= 6) {
+                situacao = 'Aprovado';
+            } else if (media >= 4) {
+                situacao = 'Recuperação';
+            } else {
+                situacao = 'Reprovado';
+            }
+
+            document.getElementById('resultadoMedia').innerHTML = `Média: ${media.toFixed(2)} <br> Situação: ${situacao}`;
+        }
+
+        function calcularDesconto() {
+            let produto = document.getElementById('produto').value;
+            let preco = Number(document.getElementById('precoVenda').value);
+            let desconto = 0;
+
+            if (produto.toLowerCase() === 'camisa') {
+                desconto = preco * 0.20;
+            } else if (produto.toLowerCase() === 'bermuda') {
+                desconto = preco * 0.10;
+            } else if (produto.toLowerCase() === 'calça') {
+                desconto = preco * 0.15;
+            }
+
+            let precoFinal = preco - desconto;
+            document.getElementById('resultadoDesconto').innerHTML = `Desconto: R$ ${desconto.toFixed(2)} <br> Preço Final: R$ ${precoFinal.toFixed(2)}`;
+        }
+    </script>
+</body>
+</html>
